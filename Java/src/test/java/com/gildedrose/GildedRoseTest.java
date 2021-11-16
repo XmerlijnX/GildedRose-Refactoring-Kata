@@ -15,6 +15,21 @@ class GildedRoseTest {
     }
 
     @Test
+    void qualityIsMinimumZero() { // SUCCESFUL
+        Item[] items = new Item[] { new Item("bar", 1, 0) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(0, app.items[0].quality);
+    }
+
+    @Test
+    void qualityAfterSellByDateDegradesDouble() { // SUCCESFUL
+        Item[] items = new Item[] { new Item("abc", 0, 10) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(10 - 2, app.items[0].quality);
+    }
+    @Test
     void agedBrie() { // SUCCESFUL
         Item[] items = new Item[] { new Item("Aged Brie", 2, 0) };
         GildedRose app = new GildedRose(items);

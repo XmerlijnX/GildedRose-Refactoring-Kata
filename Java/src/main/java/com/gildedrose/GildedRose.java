@@ -21,9 +21,9 @@ class GildedRose {
                             items[i].quality = items[i].quality - 1;
                         }
                     }
-                }
-                if (items[i].sellIn < 0) {
-                    items[i].quality = items[i].quality - 2;
+                    if (items[i].sellIn < 1) {
+                        items[i].quality = items[i].quality - 2;
+                    }
                 }
             } else {
                 if (items[i].name.equals("Aged Brie") && items[i].quality < 50) {
