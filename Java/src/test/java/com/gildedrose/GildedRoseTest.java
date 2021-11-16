@@ -23,7 +23,7 @@ class GildedRoseTest {
     }
 
     @Test
-    void conjuredItem() { // FAILS
+    void conjuredItem() { // SUCCESFUL
         Item[] items = new Item[] { new Item("Conjured Mana Cake", 3, 6) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();

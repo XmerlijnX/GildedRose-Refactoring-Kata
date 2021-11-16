@@ -15,15 +15,15 @@ class GildedRose {
                 if (items[i].quality > 0) {
                     if (!items[i].name.equals("Sulfuras, Hand of Ragnaros") && items[i].name.contains("Conjured")) {
                         items[i].sellIn = items[i].sellIn - 1;
-                        items[i].quality = items[i].quality - 1;
-                    }
-                    // "Conjured" items degrade in Quality twice as fast as normal items:
-                    if (items[i].name.contains("Conjured")) {
-                        items[i].quality = items[i].quality - 2;
+                        if (items[i].name.contains("Conjured")) {  // "Conjured" items degrade in Quality twice as fast as normal items
+                            items[i].quality = items[i].quality - 2;
+                        } else {
+                            items[i].quality = items[i].quality - 1;
+                        }
                     }
                 }
-                if (items[i].sellIn < 1) {
-                    items[i].quality = 0;
+                if (items[i].sellIn < 0) {
+                    items[i].quality = items[i].quality - 2;
                 }
             } else {
                 if (items[i].name.equals("Aged Brie") && items[i].quality < 50) {
