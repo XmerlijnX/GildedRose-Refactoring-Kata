@@ -15,6 +15,16 @@ class GildedRoseTest {
     }
 
     @Test
+    void normalItemDecreasesInQualityBy1EveryDay() { // SUCCESFUL
+        Item[] items = new Item[] { new Item("+5 Dexterity Vest", 10, 20) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(10 - 1, app.items[0].sellIn);
+        assertEquals(20 - 1, app.items[0].quality);
+    }
+
+
+    @Test
     void qualityAfterSellByDateDegradesDouble() { // SUCCESFUL
         Item[] items = new Item[] { new Item("abc", 0, 10) };
         GildedRose app = new GildedRose(items);
@@ -40,6 +50,7 @@ class GildedRoseTest {
 
     @Test
     void SulfurasNeverSellsNorDecreasesInQuality() { // SUCCESFUL
+        // Note: also corrects wrong input values for Sulfuras
         Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", 4321, 1234) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
@@ -79,6 +90,4 @@ class GildedRoseTest {
         app.updateQuality();
         assertEquals(10 - 2, app.items[0].quality);
     }
-
-
 }

@@ -20,18 +20,17 @@ class GildedRose {
                     && !items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                 // The Quality of an item is never negative:
                 if (items[i].quality > 0) {
-                    if (!items[i].name.contains("Sulfuras") && items[i].name.contains("Conjured")) {
-                        items[i].sellIn = items[i].sellIn - 1;
+                    items[i].sellIn = items[i].sellIn - 1;
+                    if (items[i].name.contains("Conjured")) {
                         // "Conjured" items degrade in Quality twice as fast as normal items:
-                        if (items[i].name.contains("Conjured")) {
+                        items[i].quality = items[i].quality - 2;
+                    } else {
+                        // Once the sell by date has passed, Quality degrades twice as fast:
+                        if (items[i].sellIn < 1) {
                             items[i].quality = items[i].quality - 2;
                         } else {
                             items[i].quality = items[i].quality - 1;
                         }
-                    }
-                    // Once the sell by date has passed, Quality degrades twice as fast:
-                    if (items[i].sellIn < 1) {
-                        items[i].quality = items[i].quality - 2;
                     }
                 }
             } else {
@@ -43,6 +42,9 @@ class GildedRose {
                 // "Backstage passes", like aged brie, increases in Quality as its SellIn value approaches;
                 if (items[i].name.equals("Backstage passes to a TAFKAL80ETC concert") && items[i].quality < 50) {
                     items[i].sellIn = items[i].sellIn - 1;
+                    if (items[i].sellIn > 10) {
+                        items[i].quality = items[i].quality + 1;
+                    }
                     // ... Quality increases by 2 when there are 10 days or less:
                     if (items[i].sellIn < 11 && items[i].sellIn > 5) {
                         items[i].quality = items[i].quality + 2;
