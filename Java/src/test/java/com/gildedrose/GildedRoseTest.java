@@ -40,7 +40,7 @@ class GildedRoseTest {
 
     @Test
     void SulfurasNeverSellsNorDecreasesInQuality() { // SUCCESFUL
-        Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", -1, 80) };
+        Item[] items = new Item[] { new Item("Sulfuras, Hand of Ragnaros", 4321, 1234) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals(-1, app.items[0].sellIn);
@@ -64,11 +64,20 @@ class GildedRoseTest {
     }
 
     @Test
-    void conjuredItem() { // SUCCESFUL
-        Item[] items = new Item[] { new Item("Conjured Mana Cake", 3, 6) };
+    void backstagePassQualityDropsToZeroAfterTheConcert() { // SUCCESFUL
+        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 0, 10) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
-        assertEquals(4, app.items[0].quality);
+        assertEquals(-1, app.items[0].sellIn);
+        assertEquals(0, app.items[0].quality);
+    }
+
+    @Test
+    void conjuredItemQualityDecreasesTwiceAsFast() { // SUCCESFUL
+        Item[] items = new Item[] { new Item("Conjured Mana Cake", 3, 10) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(10 - 2, app.items[0].quality);
     }
 
 
