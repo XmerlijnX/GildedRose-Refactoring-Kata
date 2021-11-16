@@ -7,14 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class GildedRoseTest {
 
     @Test
-    void foo() { // SUCCESFUL
-        Item[] items = new Item[] { new Item("foo", 0, 0) };
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
-        assertEquals("foo", app.items[0].name);
-    }
-
-    @Test
     void qualityIsMinimumZero() { // SUCCESFUL
         Item[] items = new Item[] { new Item("bar", 1, 0) };
         GildedRose app = new GildedRose(items);
@@ -32,15 +24,15 @@ class GildedRoseTest {
 
     @Test
     void agedBrieIncreasesInQuality() { // SUCCESFUL
-        Item[] items = new Item[] { new Item("Aged Brie", 2, 0) };
+        Item[] items = new Item[] { new Item("Aged Brie", 2, 10) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
-        assertEquals(1, app.items[0].quality);
+        assertEquals(10 + 1, app.items[0].quality);
     }
 
     @Test
     void qualityIsMaximum50() { // SUCCESFUL
-        Item[] items = new Item[] { new Item("Aged Brie", 2, 50) };
+        Item[] items = new Item[] { new Item("50 Quality Item", 2, 50) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
         assertEquals(50, app.items[0].quality);
@@ -53,6 +45,22 @@ class GildedRoseTest {
         app.updateQuality();
         assertEquals(-1, app.items[0].sellIn);
         assertEquals(80, app.items[0].quality);
+    }
+
+    @Test
+    void backstagePassQualityIncreasesBy2WhenSellByDateIsBetween6and10() { // SUCCESFUL
+        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 8, 10) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(10 + 2, app.items[0].quality);
+    }
+
+    @Test
+    void backstagePassQualityIncreasesBy3WhenSellByDateIsBetween0and5() { // SUCCESFUL
+        Item[] items = new Item[] { new Item("Backstage passes to a TAFKAL80ETC concert", 4, 10) };
+        GildedRose app = new GildedRose(items);
+        app.updateQuality();
+        assertEquals(10 + 3, app.items[0].quality);
     }
 
     @Test
