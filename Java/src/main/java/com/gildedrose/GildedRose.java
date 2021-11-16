@@ -32,13 +32,13 @@ class GildedRose {
                 if (items[i].name.equals("Backstage passes to a TAFKAL80ETC concert") && items[i].quality < 50) {
                     if (items[i].sellIn < 11) {
                         if (items[i].quality < 50) {
-                            items[i].quality = items[i].quality + 1; // +2 according to requirements
+                            items[i].quality = items[i].quality + 2;
                         }
                     }
 
                     if (items[i].sellIn < 6) {
                         if (items[i].quality < 50) {
-                            items[i].quality = items[i].quality + 1; // +3 according to requirements
+                            items[i].quality = items[i].quality + 3;
                         }
                     }
                 }
