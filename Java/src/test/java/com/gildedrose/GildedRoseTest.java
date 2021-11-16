@@ -23,9 +23,8 @@ class GildedRoseTest {
         assertEquals(20 - 1, app.items[0].quality);
     }
 
-
     @Test
-    void qualityAfterSellByDateDegradesDouble() { // SUCCESFUL
+    void qualityAfterSellByDateDegradesTwiceAsFast() { // SUCCESFUL
         Item[] items = new Item[] { new Item("abc", 0, 10) };
         GildedRose app = new GildedRose(items);
         app.updateQuality();
